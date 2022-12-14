@@ -6,14 +6,17 @@ app = Flask(__name__)
 @app.route('/start', methods=['GET'])
 def start():
 
-    # Appel .log container
+   code: str = request.args.get('code')
 
-    # THEN
-    # Appel .csv container & .rel container
-    # WHEN .rel container répond :
-    # Appel tdms container
+   response = requests.get('http://127.0.0.1:8002/start', params={'code': code})
 
-    return str(request.args.get('code'))
+   # THEN
+   # Appel .csv container & .rel container
+   # WHEN .rel container répond :
+   # Appel tdms container
+   
+
+   return response.content
 
 
 if __name__ == '__main__':
