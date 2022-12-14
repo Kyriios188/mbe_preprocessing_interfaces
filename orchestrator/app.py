@@ -16,7 +16,7 @@ def start():
    # Appel tdms container
    
 
-   return response.content
+   return str(response.status_code)
 
 
 if __name__ == '__main__':
