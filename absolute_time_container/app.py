@@ -25,15 +25,6 @@ def start():
       # If there was any error
       return str(response.status_code), response.status_code
 
-
-   # If the content was reachable, answer the server in one thread
-   # and start the processing in another.
-   # pid = os.fork()
-
-   # if pid == 0:
-   #    return "200", 200
-
-
    # The files folder is in the same folder as this file
    PARENT_FOLDER = Path(__file__).resolve().parent
    FILES_FOLDER: str = os.path.join(PARENT_FOLDER, 'files')

@@ -26,11 +26,6 @@ def start():
    PARENT_FOLDER = Path(__file__).resolve().parent
    FILES_FOLDER: str = os.path.join(PARENT_FOLDER, 'files')
 
-   # pid = os.fork()
-
-   # if pid == 0:
-   #    return "Started", 200
-
 
    for file_path_map in FILE_URLS.items():
       response = requests.get(SERVER_URL+file_path_map[0])
