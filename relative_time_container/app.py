@@ -29,7 +29,7 @@ def start():
 
    utils.clean_folder(FILES_FOLDER)
    
-   return str(response.status_code), response.status_code
+   return "201", 201
     
 
 

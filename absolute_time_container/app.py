@@ -28,10 +28,10 @@ def start():
 
    # If the content was reachable, answer the server in one thread
    # and start the processing in another.
-   pid = os.fork()
+   # pid = os.fork()
 
-   if pid == 0:
-      return "200", 200
+   # if pid == 0:
+   #    return "200", 200
 
 
    # The files folder is in the same folder as this file
@@ -45,7 +45,7 @@ def start():
 
    utils.clean_folder(FILES_FOLDER)
    
-   # TODO: send end request to orchestrator
+   return "201", 201
     
 
 
