@@ -4,6 +4,8 @@ from pathlib import Path
 import os
 
 import utils
+from fill_database import fill_database
+from export_database import export_database_main
 
 
 app = Flask(__name__)
@@ -32,7 +34,11 @@ def start():
 
    open(FILE_PATH, 'wb').write(response.content)
 
-   # Processing
+   # Processing the file
+   experiment_list = fill_database()
+
+   # Sending the data to the SQL server
+   export_database_main(experiment_list)
 
    utils.clean_folder(FILES_FOLDER)
    
