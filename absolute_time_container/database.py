@@ -191,8 +191,6 @@ class Step:
                 step_number,
                 abs_start,
                 abs_end,
-                rel_start,
-                rel_end
             )
             VALUES
             (
@@ -202,8 +200,6 @@ class Step:
                 '{self.step_number}',
                 '{self.start}',
                 '{self.end}',
-                '{self.rel_start}',
-                '{self.rel_end}'
             );
         
         """
