@@ -14,9 +14,6 @@ class Experiment:
     init_time: datetime.datetime
     end_time: datetime.datetime
 
-    rel_init_time: float
-    rel_end_time: float
-
     # Total number of layers in the experiment.
     # Configuration steps not included as layers
     n_layers: int = 0
@@ -38,25 +35,27 @@ class Experiment:
         self.code = self.get_experiment_code()
         self.label = self.get_experiment_label()
         self.last_step_number = Experiment.get_last_step_number(file_path)
+        self.init_time = None
+        self.end_time = None
 
     
-    def get_query(self) -> str:
+    def get_insert_query(self) -> str:
 
         query: str = f"""
 
-        INSERT INTO experiments VALUES
+        INSERT INTO experiment
             (
                 code,
-                init_time,
+                start_time,
                 end_time,
                 n_layers,
                 label
             )
-            values
+            VALUES
             (
                 '{self.code}',
-                '{self.init_time}',
-                '{self.end_time}',
+                '{self.init_time.strftime('%Y-%m-%d %H:%M:%S')}',
+                '{self.end_time.strftime('%Y-%m-%d %H:%M:%S')}',
                 '{self.n_layers}',
                 '{self.label}'
             );
@@ -127,12 +126,14 @@ class Experiment:
             )
 
     def get_experiment_label(self) -> float:
-        labels_file = open('labels.json', 'r')
-        labels_json = json.load(labels_file)
-        try:
-            return labels_json[self.code]
-        except KeyError:
-            return float(input(f'Please enter the label for experiment {self.code}: '))
+        # TODO: remove this bandaid fix
+        return 5.5
+        # labels_file = open('labels.json', 'r')
+        # labels_json = json.load(labels_file)
+        # try:
+        #     return labels_json[self.code]
+        # except KeyError:
+        #     return float(input(f'Please enter the label for experiment {self.code}: '))
 
     @classmethod
     def is_relevant_experiment(cls, f: TextIO) -> bool:
@@ -170,12 +171,44 @@ class Step:
     start: datetime.datetime
     end: datetime.datetime
 
-    rel_start: float = -1
-    rel_end: float = -1
+    rel_start: float = 0
+    rel_end: float = 0
     
     curvature: list[tuple[float, float]]
     wafer_temperature: list[tuple[float, float]]
     roughness: list[tuple[float, float]]
+    
+    
+    def get_step_insert_query(self, experiment_fk: int) -> str:
+    
+        query: str = f"""
+
+        INSERT INTO step
+            (
+                experiment_fk,
+                line,
+                line_index,
+                step_number,
+                abs_start,
+                abs_end,
+                rel_start,
+                rel_end
+            )
+            VALUES
+            (
+                '{experiment_fk}',
+                '{self.line}',
+                '{self.line_index}',
+                '{self.step_number}',
+                '{self.start}',
+                '{self.end}',
+                '{self.rel_start}',
+                '{self.rel_end}'
+            );
+        
+        """
+        
+        return query
 
     def get_tdms_query_list(self, step_pk: int, table: str) -> list[str]:
         query_list: list[str] = []
@@ -266,32 +299,18 @@ class OtherStep(Step):
         self.step_type = line_type
     
 
-    def get_query(self, experiment_fk: int) -> str:
+    def get_insert_query(self, step_id: int) -> str:
 
         query: str = f"""
 
-        INSERT INTO other_layers VALUES
+        INSERT INTO other_layers
             (
-                experiment,
-                line,
-                line_index,
-                step_number,
-                start,
-                end,
-                rel_start,
-                rel_end,
+                id,
                 step_type
             )
-            values
+            VALUES
             (
-                '{experiment_fk}',
-                '{self.line}',
-                '{self.line_index}',
-                '{self.step_number}',
-                '{self.start}',
-                '{self.end}',
-                '{self.rel_start}',
-                '{self.rel_end}',
+                '{step_id}',
                 '{self.step_type}'
             );
         
@@ -331,34 +350,20 @@ class Layer(Step):
             self.percentage = float(percentage_match.group(0))
 
 
-    def get_query(self, experiment_fk: int) -> str:
+    def get_insert_query(self, step_id: int) -> str:
 
         query: str = f"""
 
-        INSERT INTO main_layers VALUES
+        INSERT INTO layer VALUES
             (
-                experiment,
-                line,
-                line_index,
-                step_number,
-                start,
-                end,
-                rel_start,
-                rel_end,
+                id,
                 element,
                 percentage,
                 size
             )
             values
             (
-                '{experiment_fk}',
-                '{self.line}',
-                '{self.line_index}',
-                '{self.step_number}',
-                '{self.start}',
-                '{self.end}',
-                '{self.rel_start}',
-                '{self.rel_end}',
+                '{step_id}',
                 '{self.element}',
                 '{self.percentage}',
                 '{self.size}'

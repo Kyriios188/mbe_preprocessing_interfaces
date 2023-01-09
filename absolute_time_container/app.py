@@ -37,12 +37,20 @@ def start():
    # Processing the file
    experiment_list = fill_database()
 
-   # Sending the data to the SQL server
-   export_database_main(experiment_list)
+   try:
+      
+      # Sending the data to the SQL server
+      export_database_main(experiment_list)
+      utils.clean_folder(FILES_FOLDER)
 
-   utils.clean_folder(FILES_FOLDER)
+      return "201", 201
    
-   return "201", 201
+   except Exception as e:
+      print(e)
+      utils.clean_folder(FILES_FOLDER)
+      return "500", 500
+
+   
     
 
 

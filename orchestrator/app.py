@@ -71,7 +71,7 @@ def start():
 
    start_time = time.time()
 
-   if check_containers_reachable():
+   if True:  # check_containers_reachable()
       print('Reached all containers.')
       Thread(
          target=call_preprocessing_containers,

@@ -1,7 +1,7 @@
 import os
 import datetime
 
-from .database import Step, Experiment, OtherStep, Layer
+from database import Step, Experiment, OtherStep, Layer
 
 folderpath = 'files/'
 
@@ -71,7 +71,9 @@ def fill_database():
                                 line_type=line_type
                             )
                             last_step.end = line_timestamp  # This step starts and finishes instantly
+                            current_experiment.end_time = line_timestamp
                             current_experiment.step_list.append(last_step)
+                            
 
                         # If there is a previous_step from past loop and if it is not the final line in the file
                         else:
@@ -96,3 +98,4 @@ def fill_database():
                                 )
 
                     experiment_list.append(current_experiment)
+    return experiment_list
