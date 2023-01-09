@@ -1,0 +1,6 @@
+-> Une query par database.py
+==> pas de rel_time dans le database absolute time.
+
+Besoin linux pour tester avec os.fork()
+
+Installé Docker Desktop et Système gestion DB sur ordi perso et fait transferts
