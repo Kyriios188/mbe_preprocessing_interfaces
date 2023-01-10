@@ -17,8 +17,12 @@ def start():
    
    SERVER_URL = f'http://127.0.0.1:8000'
    FILE_URL: str = f'/media/recipe_log/{code}_recipe.log'
+   
+   print(-2)
 
    response = requests.get(SERVER_URL+FILE_URL)
+   
+   print(-1)
 
    # End the process if the content is unreachable
    try:
@@ -26,6 +30,8 @@ def start():
    except requests.exceptions.HTTPError:
       # If there was any error
       return str(response.status_code), response.status_code
+   
+   print(0)
 
    # The files folder is in the same folder as this file
    PARENT_FOLDER = Path(__file__).resolve().parent
@@ -38,9 +44,10 @@ def start():
    experiment_list = fill_database()
 
    try:
-      
+      print(1)
       # Sending the data to the SQL server
       export_database_main(experiment_list)
+      print(2)
       utils.clean_folder(FILES_FOLDER)
 
       return "201", 201

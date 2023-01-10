@@ -186,18 +186,20 @@ class Step:
         INSERT INTO step
             (
                 experiment_fk,
+                line,
                 line_index,
                 step_number,
                 abs_start,
-                abs_end
+                abs_end,
             )
             VALUES
             (
                 '{experiment_fk}',
+                '{self.line}',
                 '{self.line_index}',
                 '{self.step_number}',
                 '{self.start}',
-                '{self.end}'
+                '{self.end}',
             );
         
         """
@@ -224,7 +226,7 @@ class Step:
 
     def __init__(self, experiment: Experiment, line: str, line_index: int):
         self.experiment = experiment
-        self.line = line.strip().replace("\"", "")
+        self.line = line
         self.line_index = line_index
 
         self.start = Step.get_timestamp(self.line)

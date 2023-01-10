@@ -3,6 +3,8 @@ from flask import Flask, request
 from pathlib import Path
 import os
 
+import fill_database
+
 import utils
 
 
@@ -26,6 +28,7 @@ def start():
    open(FILE_PATH, 'wb').write(response.content)
 
    # Processing
+   fill_database.fill_database_main(code=code)
 
    utils.clean_folder(FILES_FOLDER)
    

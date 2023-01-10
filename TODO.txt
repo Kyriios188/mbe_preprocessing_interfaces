@@ -1,6 +1,5 @@
--> Une query par database.py
-==> pas de rel_time dans le database absolute time.
+curvature slope dans les steps
 
-Besoin linux pour tester avec os.fork()
+ajouter les Layer et OtherStep
 
-Installé Docker Desktop et Système gestion DB sur ordi perso et fait transferts
+check que je prend bien les Y de curvature
