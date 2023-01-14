@@ -17,7 +17,6 @@ def export_database_main(experiment: Experiment) -> None:
     CURSOR = DATABASE.cursor()
 
     experiment_query: str = experiment.get_insert_query()
-    print(experiment_query)
 
     CURSOR.execute(experiment_query)
     experiment_key: int = CURSOR.lastrowid
@@ -25,16 +24,13 @@ def export_database_main(experiment: Experiment) -> None:
     # On obtient la clé de l'expérience
 
     for step in experiment.step_list:
-        print(step.rel_start)
+        # Insert Step
         step_query: str = step.get_step_insert_query(experiment_key)
-        print(step_query)
-        CURSOR.execute(step_query.replace("\"", "'"))
+        CURSOR.execute(step_query)
         
         step_key: int = CURSOR.lastrowid
-        
-        # TODO: add Layer / OtherStep data
-
-        # insert the sensor data
+        layer_query: str = step.get_insert_query(step_id=step_key)
+        CURSOR.execute(layer_query)
     
     CURSOR.close()
     DATABASE.commit()

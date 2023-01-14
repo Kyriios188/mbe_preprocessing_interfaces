@@ -297,10 +297,10 @@ class OtherStep(Step):
 
         query: str = f"""
 
-        INSERT INTO other_layers
+        INSERT INTO other_step
             (
                 id,
-                step_type
+                type
             )
             VALUES
             (
@@ -348,14 +348,14 @@ class Layer(Step):
 
         query: str = f"""
 
-        INSERT INTO layer VALUES
+        INSERT INTO layer
             (
                 id,
                 element,
                 percentage,
-                size
+                nm_size
             )
-            values
+            VALUES
             (
                 '{step_id}',
                 '{self.element}',

@@ -1,9 +1,11 @@
-import requests
-from flask import Flask, request
 from pathlib import Path
 import os
+import requests
+
+from flask import Flask, request
 
 import utils
+import fill_database
 
 
 app = Flask(__name__)
@@ -34,6 +36,8 @@ def start():
       open(file_path, 'wb').write(response.content)
 
    # Processing
+   fill_database.tdms_extraction_main(code=code)
+   
 
    utils.clean_folder(FILES_FOLDER)
    
@@ -45,5 +49,5 @@ if __name__ == '__main__':
    app.run(
       debug=True,
       host='0.0.0.0',
-      port=8005
+      port=8004
    )
