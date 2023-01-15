@@ -106,14 +106,14 @@ class Experiment:
         for step in self.step_list:
             print(str(vars(step)).encode('utf-8'))
 
-    def get_experiment_keyword(self) -> str:
+    def get_experiment_keyword(self):
         """Returns the string like 'Bragg' to identify and group experiments"""
 
         for e in self.experiment_keywords:
             if e in self.file_name:
                 return e
 
-    def get_experiment_code(self) -> str:
+    def get_experiment_code(self):
         """Returns the string like 'A1417'"""
         str_match = re.search(r'[A-Z]\d{4}', self.file_name)
         if str_match:
@@ -125,7 +125,7 @@ class Experiment:
                 "yet has no experiment code with format like 'A1420'\nPlease enter the experiment code: "
             )
 
-    def get_experiment_label(self) -> float:
+    def get_experiment_label(self):
         # TODO: remove this bandaid fix
         return 5.5
         # labels_file = open('labels.json', 'r')

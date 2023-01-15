@@ -7,7 +7,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-ABS_TIME_CT, REL_TIME_CT, SENSOR_CT, SHUTTER_CT = 0, 1, 2, 3
+ABS_TIME_CT, REL_TIME_CT, SENSOR_CT = 0, 1, 2
 CT_ADDR = {
    ABS_TIME_CT: 'http://127.0.0.1:8002/',
    REL_TIME_CT: 'http://127.0.0.1:8003/',

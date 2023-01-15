@@ -1,0 +1,79 @@
+version: '3.4'
+
+services:
+    mariadb:
+        image: mariadb:10.4
+        ports:
+            "3306:3306"
+        networks:
+            static-network:
+                ipv4_address: 172.20.0.1
+        environment:
+            - MARIADB_ROOT_PASSWORD=123thisisatest!
+            - MARIADB_DATABASE=epitaxy_db
+
+    django:
+        build: ./orchestrator
+        ports:
+            "8000:8000"
+        networks:
+            static-network:
+                ipv4_address: 172.20.0.2
+        depends_on:
+            - mariadb
+
+    orchestrator:
+        build: ./orchestrator
+        ports:
+            "8001:8001"
+        networks:
+            static-network:
+                ipv4_address: 172.20.0.3
+        depends_on:
+            - mariadb
+            - django
+
+    abs_time:
+        build: ./absolute_time_container
+        ports:
+            "8002:8002"
+        networks:
+            static-network:
+                ipv4_address: 172.20.0.4
+        depends_on:
+            - mariadb
+            - django
+            - orchestrator
+
+    rel_time:
+        build: ./absolute_time_container
+        ports:
+            "8003:8003"
+        networks:
+            static-network:
+                ipv4_address: 172.20.0.5
+        depends_on:
+            - mariadb
+            - django
+            - orchestrator
+            - abs_time
+
+    sensor_data:
+        build: ./sensor_data_container
+        ports:
+            "8004:8004"
+        networks:
+            static-network:
+                ipv4_address: 172.20.0.6
+        depends_on:
+            - mariadb
+            - django
+            - orchestrator
+            - abs_time
+            - rel_time
+
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
