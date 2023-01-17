@@ -124,7 +124,7 @@ def extract_data(file_path: str, icol: int, data_type: str):
 def tdms_extraction_main(code: str):
     
     data_file_name: dict[str, int] = {
-        'Wafer Temperature': (1, f'{code}_wafer_temperature.tdms'),
+        #'Wafer Temperature': (1, f'{code}_wafer_temperature.tdms'),
         'Curvature': (2, f'{code}_curvature.tdms'),
         'Roughness': (1, f'{code}_roughness.tdms'),
         'Reflectivity': (1, f'{code}_reflectivity.tdms')
@@ -133,8 +133,6 @@ def tdms_extraction_main(code: str):
         tdms_file: str = file[1][1]
         data_name: str = file[0]
         
-        if code not in ['A1417', 'A1418', 'A1419', 'A1420']:
-            continue
         print(f"{code}: {data_name}")
         
         extract_data(
