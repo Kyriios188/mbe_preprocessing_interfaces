@@ -47,8 +47,9 @@ def send_rel_time_to_db(code: str, step_to_rel_map: dict[int, tuple[float, float
     """
     
     DATABASE = mysql.connector.connect(
-        host="127.0.0.1",
+        host="172.20.0.1",
         user="root",
+        port=3306,
         password="123thisisatest!",
         database="epitaxy_db",
     )

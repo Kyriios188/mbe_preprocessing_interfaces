@@ -1,0 +1,20 @@
+{% extends 'epitaxy_web_interface/base.html' %}
+
+{% block css %}
+{% endblock css %}
+
+{% block title %}Ajouter expérience{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <br><br><br><br>
+
+    <div style="margin-left: 15%;">
+        {% crispy form %}
+    </div>
+
+    
+
+{% endblock content %}

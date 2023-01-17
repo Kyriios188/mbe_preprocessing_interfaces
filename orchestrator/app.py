@@ -9,9 +9,9 @@ app = Flask(__name__)
 
 ABS_TIME_CT, REL_TIME_CT, SENSOR_CT = 0, 1, 2
 CT_ADDR = {
-   ABS_TIME_CT: 'http://127.0.0.1:8002/',
-   REL_TIME_CT: 'http://127.0.0.1:8003/',
-   SENSOR_CT: 'http://127.0.0.1:8004/',
+   ABS_TIME_CT: 'http://172.20.0.4:8002/',
+   REL_TIME_CT: 'http://172.20.0.5:8003/',
+   SENSOR_CT: 'http://172.20.0.6:8004/',
 }
 
 def check_containers_reachable() -> bool:
@@ -48,10 +48,10 @@ def call_preprocessing_containers(code: str, start_time: float):
 
 
    if any((not r == 201) for r in response_dict.values()):
-      requests.get(f'http://127.0.0.1:8000/end/{500}/')
+      requests.get(f'http://172.20.0.2:8000/end/{500}/')
 
    else:
-      requests.get(f'http://127.0.0.1:8000/end/{201}/')
+      requests.get(f'http://172.20.0.2:8000/end/{201}/')
 
 
 @app.route('/start', methods=['GET'])

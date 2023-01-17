@@ -1,8 +1,4 @@
 curvature slope dans les steps
 
 
-change the IPs in the files to match the docker-compose
-copy the django project to this folder
-make Django dockerfile (expose port 8000)
-
 make startup script to insert dump into database

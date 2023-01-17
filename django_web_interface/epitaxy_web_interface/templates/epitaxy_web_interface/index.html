@@ -1,0 +1,24 @@
+{% extends 'epitaxy_web_interface/base.html' %}
+
+{% load static %}
+
+
+{% block title %}Projet MBE{% endblock %}
+
+{% block content %}
+    <body>
+        <h1 style="text-align:center" class="h1">MBE SDBD Project</h1>
+
+        <body>
+            <br><br>
+            <div class="row">
+                <div class="column"><a href="{% url 'epitaxy_web_interface:upload_files' %}" class="button">Ajouter une expérience</a></div>
+                <div class="column"><a href="{% url 'epitaxy_web_interface:predict' %}" class="button">Prédire un résultat</a></div>
+            </div>
+        </body>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    </body>
+{% endblock %}
+

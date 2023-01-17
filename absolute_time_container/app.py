@@ -15,7 +15,7 @@ def start():
 
    code: str = request.args.get('code', type=str)
    
-   SERVER_URL = f'http://127.0.0.1:8000'
+   SERVER_URL = f'http://172.20.0.2:8000'
    FILE_URL: str = f'/media/recipe_log/{code}_recipe.log'
 
    response = requests.get(SERVER_URL+FILE_URL)

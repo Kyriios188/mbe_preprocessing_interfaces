@@ -42,8 +42,9 @@ def extract_data(file_path: str, icol: int, data_type: str):
     }
     
     DATABASE = mysql.connector.connect(
-        host="127.0.0.1",
+        host="172.20.0.1",
         user="root",
+        port=3306,
         password="123thisisatest!",
         database="epitaxy_db",
     )
