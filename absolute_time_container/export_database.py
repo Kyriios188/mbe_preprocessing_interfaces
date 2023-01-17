@@ -5,7 +5,7 @@ from database import Experiment, Step
 def export_database_main(experiment: Experiment) -> None:
 
     DATABASE = mysql.connector.connect(
-        host="172.20.0.1",
+        host="172.20.0.10",
         user="root",
         port=7999,
         password="123thisisatest!",

@@ -7,7 +7,7 @@ services:
             - "3306:3306"
         networks:
             static-network:
-                ipv4_address: 172.20.0.1
+                ipv4_address: 172.20.0.10
         environment:
             - MARIADB_ROOT_PASSWORD=123thisisatest!
             - MARIADB_DATABASE=epitaxy_db
