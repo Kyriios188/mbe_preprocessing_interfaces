@@ -44,7 +44,7 @@ services:
             - orchestrator
 
     rel_time:
-        build: ./absolute_time_container
+        build: ./relative_time_container
         ports:
             - "8003:8003"
         networks:

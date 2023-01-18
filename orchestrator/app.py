@@ -9,9 +9,9 @@ app = Flask(__name__)
 
 ABS_TIME_CT, REL_TIME_CT, SENSOR_CT = 0, 1, 2
 CT_ADDR = {
-   ABS_TIME_CT: 'http://172.20.0.4:8002/',
-   REL_TIME_CT: 'http://172.20.0.5:8003/',
-   SENSOR_CT: 'http://172.20.0.6:8004/',
+   ABS_TIME_CT: 'http://172.20.0.4:8002',
+   REL_TIME_CT: 'http://172.20.0.5:8003',
+   SENSOR_CT: 'http://172.20.0.6:8004',
 }
 
 def check_containers_reachable() -> bool:
@@ -41,7 +41,7 @@ def call_preprocessing_containers(code: str, start_time: float):
       print(f"Received {rel_time_ct_response.status_code} from CT2 {time.time() - start_time}")
       response_dict[REL_TIME_CT] = rel_time_ct_response.status_code
 
-      if abs_time_ct_response.status_code == 201:
+      if rel_time_ct_response.status_code == 201:
          sensor_ct_response = requests.get(CT_ADDR[SENSOR_CT]+'/start', params={'code': code})
          print(f"Received {sensor_ct_response.status_code} from CT4 {time.time() - start_time}")
          response_dict[SENSOR_CT] = sensor_ct_response.status_code
