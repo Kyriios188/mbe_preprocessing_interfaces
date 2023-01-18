@@ -15,8 +15,7 @@ class Experiment(models.Model):
     # JSON field ?
     labels = models.CharField(
         max_length=500,
-        verbose_name="labels de l'expérience",
-        help_text="sous format json ?"
+        verbose_name="label de l'expérience"
     )
 
     recipe_log = models.FileField(
@@ -40,7 +39,7 @@ class Experiment(models.Model):
         upload_to='curvature_tdms'
     )
     roughness_tdms = models.FileField(
-        verbose_name="Fichier 'Roughness.tdms' des données de ruguouosité",
+        verbose_name="Fichier 'Roughness.tdms' des données de rugosité",
         upload_to='roughness_tdms'
     )
     wafer_temperature_tdms = models.FileField(
