@@ -3,8 +3,6 @@ version: '3.4'
 services:
     mariadb:
         image: mariadb:10.4
-        ports:
-            - "3306:3306"
         networks:
             static-network:
                 ipv4_address: 172.20.0.10
