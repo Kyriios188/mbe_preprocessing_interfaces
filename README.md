@@ -26,3 +26,13 @@ Problèmes :
 
 * Les fichiers "Wafer Temperature.tdms" ne peuvent pas être ouverts en utilisant npTDMS (la seule librairie Python que j'ai trouvé pour ouvrir un fichier TDMS) car ces fichiers utilisent le type `ExtendedFloat`. Soit il faut modifier le code source pour forcer un autre type sans que les données deviennent fausses, soit il faut trouver une autre librairie, soit il faut changer de langage.
 
+## Perspective
+
+Il reste comme piste d’amélioration majeur le fait que l’interface idéale est une interface qui fait des prédictions basées sur les données d’une expérience en temps réel. L’architecture actuelle n’est absolument pas capable de réaliser cela. Il faudrait pouvoir intégrer le processus de transformation des données dans l’architecture du LAAS de sorte à ne plus passer par des fichiers TDMS mais bien par les données en temps réel des capteurs.
+
+Il faudrait utiliser cette interface comme un prototype et non comme l'aboutissement du projet.
+
+## Contact
+
+Si vous avez des questions ou des problèmes avec le code, je suis joignable ici : rosimon@etud.insa-toulouse.fr
+
