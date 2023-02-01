@@ -1,6 +1,0 @@
-curvature slope dans les steps
-
-
-make startup script to insert dump into database !! No structure yet !
-Verify that the web interface refuses connections when processing previous request
-
