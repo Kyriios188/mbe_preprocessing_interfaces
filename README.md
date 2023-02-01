@@ -2,7 +2,7 @@
 
 ## Description
 
-Ce projet consiste à transformer les données MBE venant de divers formats (.tdms, .log, .csv) en une base de données SQL exploitable pour une IA.
+Ce projet consiste à transformer les données MBE venant de divers formats (.tdms, .log, .csv) en une base de données SQL exploitable pour une IA. Le PDF du rapport peut être trouvé à la racine de ce projet.
 
 ## Utilisation
 
