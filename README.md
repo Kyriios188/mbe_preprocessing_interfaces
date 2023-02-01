@@ -20,6 +20,8 @@ Détails :
 
 * Il faut que l'orchestrator et le container des capteurs (celui qui est le plus lent, très largement) envoient des mise à jour du progrès du traitement des données. Traiter les données de réflectivité peut prendre des heures.
 
+* Le container de temps absolu se comporte bien mais il faudrait ajouter la même gestion des erreurs au container de temps relatif et au container des capteurs.
+
 Problèmes :
 
 * Les fichiers "Wafer Temperature.tdms" ne peuvent pas être ouverts en utilisant npTDMS (la seule librairie Python que j'ai trouvé pour ouvrir un fichier TDMS) car ces fichiers utilisent le type `ExtendedFloat`. Soit il faut modifier le code source pour forcer un autre type sans que les données deviennent fausses, soit il faut trouver une autre librairie, soit il faut changer de langage.
